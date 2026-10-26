@@ -1,1 +1,6 @@
 demo.log
+frida*.log
+resp_cts.txt
+ui*.xml
+__pycache__/
+*.pyc
