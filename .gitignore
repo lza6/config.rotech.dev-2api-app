@@ -4,3 +4,4 @@ resp_cts.txt
 ui*.xml
 __pycache__/
 *.pyc
+screens/
