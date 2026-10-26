@@ -1,0 +1,113 @@
+     ____
+    / _  |   Frida 17.24.3 - A world-class dynamic instrumentation toolkit
+   | (_| |
+    > _  |   Commands:
+   /_/ |_|       help      -> Displays the help system
+   . . . .       object?   -> Display information about 'object'
+   . . . .       exit/quit -> Exit
+   . . . .
+   . . . .   Prefer a GUI? Luma is the official Frida app, with a live REPL,
+   . . . .   persistent sessions & collaboration. https://luma.frida.re/
+   . . . .
+   . . . .   Connected to Android Emulator 5554 (id=emulator-5554)
+Spawning `open.chat.gpt.aichat.bot.free.app`...
+Spawned `open.chat.gpt.aichat.bot.free.app`. Resuming main thread!
+[Android Emulator 5554::open.chat.gpt.aichat.bot.free.app ]-> [*] init hook ready
+[*] cipher2 ready
+Error: SecretKeySpec(): specified argument types do not match any of:
+	.overload('[B', 'java.lang.String')
+	.overload('[B', 'int', 'int', 'java.lang.String')
+    at Vo (/frida/bridges/java.js:8:52495)
+    at value (/frida/bridges/java.js:8:61816)
+    at <anonymous> (D:\openchat-2api\tools\hook_key.js:4:21)
+    at <anonymous> (/frida/bridges/java.js:1:21461)
+    at _performPendingVmOps (/frida/bridges/java.js:8:74664)
+    at <anonymous> (/frida/bridges/java.js:8:74551)
+    at apply (native)
+    at <anonymous> (/frida/bridges/java.js:8:53327)
+    at <anonymous> (/frida/bridges/java.js:8:53001)
+##### KEYINIT algo=AES/ECB/PKCS5Padding key=5549544e32354c4d555143343336494d
+##### KEYINIT algo=AES/ECB/PKCS5Padding key=5549544e32354c4d555143343336494d
+##### C[AES/ECB/PKCS5Padding]
+IN:eyJhY3Rpb24iOiJhcHBfb3BlbiIsImJ1bmRsZSI6Im9wZW4uY2hhdC5ncHQuYWljaGF0LmJvdC5mcmVlLmFwcCIsInNidW5kbGUiOiIyODY3MDU2MDMxXHUwMDI2Izc0NTAifQ==
+OUT:b9..+..z.gI.$.......X..L$..D./z.W+.....EJ.u<|..0..\.e...U..Jt!:....jaw.Gp....O....../......._eM{)..R....".`@q..Y
+##### KEYINIT algo=AES/ECB/PKCS5Padding key=5549544e32354c4d555143343336494d
+##### KEYINIT algo=AES/ECB/PKCS5Padding key=5549544e32354c4d555143343336494d
+##### C[AES/ECB/PKCS5Padding]
+IN:eyJidW5kbGUiOiJvcGVuLmNoYXQuZ3B0LmFpY2hhdC5ib3QuZnJlZS5hcHAiLCJzYnVuZGxlIjoiMjg2NzA1NjAzMVx1MDAyNiM3NDUwIn0=
+OUT:...y.w>.. z.........N........}.##......;.E.......l._.|._..S.v2.BI.../.-...,..........EM...C...t.
+##### KEYINIT algo=AES/ECB/NoPadding key=5549544e32354c4d555143343336494d
+##### KEYINIT algo=AES/ECB/NoPadding key=5549544e32354c4d555143343336494d
+##### C[AES/ECB/NoPadding]
+IN:42ek2a92t90BMcip/MsVOXX9xziYQqAYxVHz97EI5kiqJ/uHXW44kBRKuhsm/6Skg7SZFoIi+mPMvxgDRKP2yd4e4D6IiBfwYtDGZXgnqoXhKmqhtttbJdiXMfxOCE/kvtfmMjpEiTWR76vPdFVLFzofhm+gdne8eDxJYWOjh+zT29aRJfXMYxxDLHFfV+AzKslPigbf0WhPnhcahm/JzvEqDFUkJu1lL8u8cSttFmHNzht3JInwswqO0DWSrr61TkgkhDamkjCUlSQODumKb5Shw3bZeLzNTbq/iF87cpcuVKRyB8++b/+VWzXjDKjOOOFntZIkM4XvYgLMz5ku7L7X5jI6RIk1ke+rz3RVSxc6H4ZvoHZ3vHg8SWFjo4fs3LwWXW7x/jCM5yRpv/T9ktKyHAsHwIWVyj1iFI+b83UmsJbQsZU8QleEveR4zGdkvu1IAOq33kPFdStDq3Nq3Q==
+OUT:{
+    "list":[
+        {
+            "url":"https://app.125ks.cn/"
+            
+        },
+        {
+            "url":"https://abc.125ks.cn/"
+            
+        },
+        {
+            "url":"https://bqm.52bqm.cn"
+            
+        }
+        ,
+        {
+            "url":"https://app.52bqm.cc"
+            
+        }
+    ]
+    
+}...............
+##### KEYINIT algo=AES/ECB/PKCS5Padding key=5549544e32354c4d555143343336494d
+##### KEYINIT algo=AES/ECB/PKCS5Padding key=5549544e32354c4d555143343336494d
+##### C[AES/ECB/PKCS5Padding]
+IN:eyJidW5kbGUiOiJ0ZXN0Iiwic2J1bmRsZSI6InRlc3QifQ==
+OUT:........S..f.k..3.T...&.I..c..{Th.zO..._.....DU.
+##### KEYINIT algo=AES/ECB/PKCS5Padding key=5549544e32354c4d555143343336494d
+##### KEYINIT algo=AES/ECB/PKCS5Padding key=5549544e32354c4d555143343336494d
+##### C[AES/ECB/PKCS5Padding]
+IN:eyJidW5kbGUiOiJ0ZXN0Iiwic2J1bmRsZSI6InRlc3QifQ==
+OUT:........S..f.k..3.T...&.I..c..{Th.zO..._.....DU.
+##### KEYINIT algo=AES/ECB/PKCS5Padding key=5549544e32354c4d555143343336494d
+##### KEYINIT algo=AES/ECB/PKCS5Padding key=5549544e32354c4d555143343336494d
+##### C[AES/ECB/PKCS5Padding]
+IN:eyJidW5kbGUiOiJ0ZXN0Iiwic2J1bmRsZSI6InRlc3QifQ==
+OUT:........S..f.k..3.T...&.I..c..{Th.zO..._.....DU.
+##### KEYINIT algo=AES/ECB/PKCS5Padding key=5549544e32354c4d555143343336494d
+##### KEYINIT algo=AES/ECB/PKCS5Padding key=5549544e32354c4d555143343336494d
+##### C[AES/ECB/PKCS5Padding]
+IN:eyJidW5kbGUiOiJ0ZXN0Iiwic2J1bmRsZSI6InRlc3QifQ==
+OUT:........S..f.k..3.T...&.I..c..{Th.zO..._.....DU.
+##### KEYINIT algo=AES/ECB/PKCS5Padding key=62303435386332623236323934396238
+##### KEYINIT algo=AES/ECB/PKCS5Padding key=62303435386332623236323934396238
+##### C[AES/ECB/PKCS5Padding]
+IN:eyJhZF9zZGtfdmVyc2lvbiI6IjcuOC41LjkiLCJhcHBfdmVyc2lvbiI6IjEuMy40IiwidGltZXN0YW1wIjoxNzkzMDQ5Mjc4LCJjb25uX3R5cGUiOjEsImFwcGlkIjoiODM4MjQ2NCIsImRldmljZV9pbmZvIjp7Im9zIjoxLCJtb2RlbCI6InNka19ncGhvbmVfeDg2XzY0X2FybTY0IiwidmVuZG9yIjoiR29vZ2xlIiwicGFja2FnZV9uYW1lIjoib3Blbi5jaGF0LmdwdC5haWNoYXQuYm90LmZyZWUuYXBwIiwidWEiOiJNb3ppbGxhXC81LjAgKExpbnV4OyBBbmRyb2lkIDExOyBzZGtfZ3Bob25lX3g4Nl82NF9hcm02NCBCdWlsZFwvUlNSMS4yMTA3MjIuMDEzOyB3dikgQXBwbGVXZWJLaXRcLzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIFZlcnNpb25cLzQuMCBDaHJvbWVcLzgzLjAuNDEwMy4xMDYgTW9iaWxlIFNhZmFyaVwvNTM3LjM2In0sInR5cGUiOiJnaWRfc3RhdHVzIiwiZXJyb3JfY29kZSI6MCwiZXZlbnRfZXh0cmEiOiJ7XCJzZXNzaW9uX2lkXCI6XCI3NzJlNGVlMi02YTM5LTRlODQtYjY0Yi05OTgwYzJiZTg4ZjFcIixcImlzX3N1Y2Nlc3NcIjp0cnVlLFwiZXJyb3JfY29kZVwiOjAsXCJlcnJvcl9tc2dcIjpcIlwiLFwiZHVyYXRpb25cIjoyMzA5LFwiaGFzX3NldHRpbmdcIjp0cnVlLFwib3NfdmVyc2lvbl9pbnRcIjozMCxcInBhbmdsZV9jbGllbnRfdW5pcXVlX2lkXCI6XCJwYW5nbGUtM2JmNDdlYTQtYWMzZi00ZWIyLTlmOGMtMWQxYTkxNzg3YmQwLTE3OTMwNDkyNzg4MjlcIn0ifQ==
+OUT:...8.s'.............p/gR].......&.^b..q.^.&....{Q...}..:...)...]M@n...7..}...n.`d..H]......K.......%...w.._.x.L.W....9.c....p......=\..p...n..A0.......7.R^..w.Q.2/..?.E.[.DE.T.nN-...].8.>d.k..um...X...I0...(..?..F..[...&F.....h.Fj/.K...JD....} .Q...r.w.....e.q...r+...p..>w<*.%h>...V..U....g..xs..?...:....'...Ix2..I0.gx...SK.c..|...#0h......0.a[..XJ..Iz....O..Z}2...........3w4I..... ......E$...i.d.
+##### KEYINIT algo=AES/CBC/PKCS5Padding key=38613637383635346435383732303439
+##### KEYINIT algo=AES/CBC/PKCS5Padding key=38613637383635346435383732303439
+##### C[AES/CBC/PKCS5Padding]
+IN:eyJ1dWlkIjoiYTNkYjg5ODktOGY0OS00ZDQ4LTlkYTgtYTdlMjA2ZWMzMTQyIiwiZ3BfdG9rZW4iOiIiLCJjb252ZXJzYXRpb25fc2lnbiI6ImEzZGI4OTg5LThmNDktNGQ0OC05ZGE4LWE3ZTIwNmVjMzE0Ml8xNzkzMDQ5MzE2NDk1IiwidGltZXN0YW1wIjoxNzkzMDQ5MzM0Mjk4LCJxdWVzdGlvbiI6ImVjaG8gdGhpcyIsImxhbmciOiJlbiIsIm1vZGVsIjoiYXV0byIsImxlbmd0aCI6ImF1dG8iLCJzdHlsZSI6ImF1dG8ifQ==
+OUT:.....Y/.>..Z.....Q....!..(.=<.........m...n]..wr.[....6.vp.C.z.'.....E1..o....h:...~../...q>....K.....@...<.g-..[|.6X...]/eq*.. *.}...n...........?OA.3.T.TS.....:/.^..UV.z...[,.JZ....J.H3...?=....S......[..3..~...7.......P*%:.<.Gb".'.GR73..)....e;.....g
+.<
+##### KEYINIT algo=AES/CBC/PKCS5Padding key=38613637383635346435383732303439
+##### KEYINIT algo=AES/CBC/PKCS5Padding key=38613637383635346435383732303439
+##### C[AES/CBC/PKCS5Padding]
+IN:184ll47FVkKD146N5Lx2odWlJV+VYjTvPZB89rLi7meiV8tlOztFTUhcXDlgHJx6SSW/PJ3m/ocGl7bZvHvZEd4Gx4Ko9AQQmMH+45En7gpBfU2hMXU99ZwojEXBZBUAEayuU+WnWk5FRiS23An55jzSFNp7eQjvFyQXQQ3EPsjw5FMn/4clbG0p8A36ET8NFNIG+o1F2h4t3+0Tyqg5AacQTUrXkSWM2DmegGB5giA8ZvweAZWjW5ZTAf5Jm+nB
+OUT:{"code":200,"data":{"code":0,"content":"echo this","id":0,"service_trace":{"primary":{"service_type":"a","service_model":"","service_plat":"","success":true,"error_type":""}}}}
+[*] init hook ready
+[*] cipher2 ready
+Error: SecretKeySpec(): specified argument types do not match any of:
+	.overload('[B', 'java.lang.String')
+	.overload('[B', 'int', 'int', 'java.lang.String')
+    at Vo (/frida/bridges/java.js:8:52495)
+    at value (/frida/bridges/java.js:8:61816)
+    at <anonymous> (D:\openchat-2api\tools\hook_key.js:4:21)
+    at <anonymous> (/frida/bridges/java.js:1:21461)
+    at perform (/frida/bridges/java.js:8:73516)
+    at <eval> (D:\openchat-2api\tools\hook_key.js:1:13)
+    at evaluate (native)
+    at <anonymous> (/frida/repl-3.js:1:16)

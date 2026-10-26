@@ -1,0 +1,15 @@
+     ____
+    / _  |   Frida 17.24.3 - A world-class dynamic instrumentation toolkit
+   | (_| |
+    > _  |   Commands:
+   /_/ |_|       help      -> Displays the help system
+   . . . .       object?   -> Display information about 'object'
+   . . . .       exit/quit -> Exit
+   . . . .
+   . . . .   Prefer a GUI? Luma is the official Frida app, with a live REPL,
+   . . . .   persistent sessions & collaboration. https://luma.frida.re/
+   . . . .
+   . . . .   Connected to Android Emulator 5554 (id=emulator-5554)
+Attaching...
+[*] sig hook ready
+[Android Emulator 5554::PID::7234 ]-> 

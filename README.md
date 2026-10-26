@@ -98,17 +98,32 @@ data    = Base64( AES-128-CBC-PKCS5( 明文JSON ) )
 assets 内角色/引导 JSON 由 `librocore.so` 的 native `getAllJsonNative(AssetManager, name)` 解密
 （`dev.rotech.decode.Decoder`）。
 
-## 实测验证记录
+## 实测验证记录（✅ 已完全打通）
 
-使用本报告派生参数对 `chat/common_question` 发起单次低频请求：
+**最终结论（动态分析验证）**：加密 key 来自 **PackageManager 运行时返回的签名**，
+而非 APK 内嵌证书（这是本项目最大的坑）。
 
-- 格式正确的请求 → `HTTP 200`，响应 176 字节 AES 密文（Base64 236 字符）；
-- 相同格式两次请求 → 返回**完全相同**的密文（确定性加密）；垃圾密文 → 不同密文；
-  说明服务端能区分请求有效性；
-- 但以调试证书派生 key 解密响应失败（CBC/ECB/AES-256/IV 变体均 padding 错误）。
+```
+sig_hex = PackageManager.getPackageInfo(pkg, GET_SIGNATURES).signatures[0].toCharsString()
+md5hex  = MD5_hex( sig_hex )        # 对签名 hex 字符串本身做 MD5
+KEY     = md5hex[0:16]              # 16 字节 ASCII
+IV      = md5hex[16:32]             # 16 字节 ASCII
+请求/响应共用同一对 KEY/IV, AES-128-CBC-PKCS5
+```
 
-**推断**：服务端响应加密 key 由**官方 release 证书**派生（服务端只认官方签名 + 有效 gp_token）。
-重打包"高级版"的对话功能在服务端被拒绝，返回的是加密的统一拒绝消息。
+验证记录（Android 11 x86_64 模拟器 + Frida hook `javax.crypto.Cipher`）：
+
+1. App 真实请求明文：`{"uuid","gp_token","conversation_sign":"{uuid}_{ms}","timestamp","question","lang","model":"auto","length":"auto","style":"auto"}`
+2. 服务端响应明文：`{"code":200,"data":{"code":0,"content":"...","id":0,"service_trace":...}}`
+3. **本地 Python 独立实现相同协议 → 服务端返回真实 AI 回复 `"PONG"`** ✅
+4. `gp_token` 传空字符串也能通过（Play Integrity 校验未强制）
+
+### 打通路线（已走通的可复现路径）
+
+1. Android 官方 Emulator + google_apis x86_64 镜像（`D:/android-sdk`）；
+2. Frida server + hook 脚本 `tools/hook_init.js`（`Cipher.init` 抓 key）+
+   `tools/hook_cipher2.js`（`Cipher.doFinal` 抓明密文对）；
+3. 从 hook 输出取得运行时签名 hex → 派生 KEY/IV → 本地实现协议。
 
 完整结论请看 `README.md` 底部"打通路线"。
 

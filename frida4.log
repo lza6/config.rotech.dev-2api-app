@@ -1,0 +1,19 @@
+     ____
+    / _  |   Frida 17.24.3 - A world-class dynamic instrumentation toolkit
+   | (_| |
+    > _  |   Commands:
+   /_/ |_|       help      -> Displays the help system
+   . . . .       object?   -> Display information about 'object'
+   . . . .       exit/quit -> Exit
+   . . . .
+   . . . .   Prefer a GUI? Luma is the official Frida app, with a live REPL,
+   . . . .   persistent sessions & collaboration. https://luma.frida.re/
+   . . . .
+   . . . .   Connected to Android Emulator 5554 (id=emulator-5554)
+Spawning `open.chat.gpt.aichat.bot.free.app`...
+Spawned `open.chat.gpt.aichat.bot.free.app`. Resuming main thread!
+[Android Emulator 5554::open.chat.gpt.aichat.bot.free.app ]-> [*] hooks v2 installed
+
+##### ENCRYPT-REQ #####
+PLAIN:{"uuid":"a3db8989-8f49-4d48-9da8-a7e206ec3142","gp_token":"","conversation_sign":"a3db8989-8f49-4d48-9da8-a7e206ec3142_1793047141467","timestamp":1793047234752,"question":"tell me a joke","lang":"en","model":"auto","length":"auto","style":"auto"}
+CIPHER_B64:zcfHAh9ZLwM+E+NaFZHdrbFR4e1/hiHDFSigPTzzqugHxKfL5c5tyI29bl2WCHdywlvrlhgTNt92cLRD+nrTJ9L/FBu/RTGr82+EmB0VaDrzwAt+luYv0fIHcT7QzMyOSxYeqBkYQMj01DzBZy0Qf33m3eiawfIuA/mtY8pEqJGLeoDY1rsT6ycoNh86xlnvzvfx6IFNA5Za6yBHfv1Eug9zaWOs3iIK12G40aqKEF89ZQimMbIPksmpha6ZISoCQGijXfPr7Calu+6DmcxsnvlkQjsYt0bmMr3rT5Lmxx7xNvim92UpDMAqHM21sAUnCCRyx94Zs6wzlesXhI3asw==

@@ -13,14 +13,11 @@ import base64
 import hashlib
 import json
 import os
-import subprocess
-import tempfile
 import time
 import urllib.error
 import urllib.parse
 import urllib.request
 import uuid
-import zipfile
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 APK = os.environ.get("OPENCHAT_APK", r"D:\notrack-2api-app\openchat134\openchat-1.3.4.apk")
@@ -35,32 +32,30 @@ from cryptography.hazmat.primitives.padding import PKCS7
 _cache = {}
 
 
-def derive_key_iv(apk_path=APK):
-    """从 APK 签名证书派生 AES key/IV: md5hex(cert_DER_hex)[:16]=key, [16:]=IV。"""
+def derive_key_iv():
+    """派生 AES key/IV。
+
+    真实公式(动态分析验证): 对 PackageManager 返回的运行时签名 hex 字符串取 MD5hex,
+    KEY=md5hex[0:16], IV=md5hex[16:32] (各 16 字节 ASCII), 请求/响应共用。
+    注意: 运行时签名≠APK 内嵌证书 (模拟器=系统 testkey, 官方渠道=release cert)。
+    因此必须显式提供 OPENCHAT_AES_KEY/IV (从运行环境 hook 得到), 或传 OPENCHAT_SIG_HEX。
+    """
     if "key" in _cache:
         return _cache["key"], _cache["iv"]
     key_env = os.environ.get("OPENCHAT_AES_KEY")
     iv_env = os.environ.get("OPENCHAT_AES_IV")
+    sig_env = os.environ.get("OPENCHAT_SIG_HEX")
     if key_env and iv_env:
         _cache["key"], _cache["iv"] = key_env.encode(), iv_env.encode()
         return _cache["key"], _cache["iv"]
-    with zipfile.ZipFile(apk_path) as z:
-        rsa_entry = next(n for n in z.namelist() if n.endswith(".RSA"))
-        pkcs7 = z.read(rsa_entry)
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".p7") as f:
-        f.write(pkcs7)
-        tmp = f.name
-    try:
-        pem = subprocess.run(
-            ["openssl", "pkcs7", "-inform", "DER", "-in", tmp, "-print_certs"],
-            capture_output=True).stdout
-        der = subprocess.run(["openssl", "x509", "-outform", "DER"],
-                             input=pem, capture_output=True).stdout
-    finally:
-        os.unlink(tmp)
-    digest = hashlib.md5(der.hex().encode()).hexdigest()
-    _cache["key"], _cache["iv"] = digest[:16].encode(), digest[16:].encode()
-    return _cache["key"], _cache["iv"]
+    if sig_env:
+        digest = hashlib.md5(sig_env.encode()).hexdigest()
+        _cache["key"], _cache["iv"] = digest[:16].encode(), digest[16:32].encode()
+        return _cache["key"], _cache["iv"]
+    raise SystemExit(
+        "缺少密钥: 请设置 OPENCHAT_SIG_HEX (运行时签名 hex, 经 PackageManager hook 获取) "
+        "或 OPENCHAT_AES_KEY + OPENCHAT_AES_IV。静态从 APK 证书派生在真实环境不成立, 详见 README。")
+
 
 
 def aes_enc(plaintext: str) -> str:
@@ -80,15 +75,14 @@ def aes_dec(b64data: str) -> str:
     return (unpadder.update(padded) + unpadder.finalize()).decode()
 
 
-def upstream_chat(question: str, lang="zh", model="1", length="1", style="1"):
+def upstream_chat(question: str, lang="en", model="auto", length="auto", style="auto"):
+    uuid_ = os.environ.get("OPENCHAT_UUID", str(uuid.uuid4()))
     payload = {
-        "uuid": os.environ.get("OPENCHAT_UUID", str(uuid.uuid4())),
+        "uuid": uuid_,
         "gp_token": os.environ.get("OPENCHAT_GP_TOKEN", ""),
-        "conversation_sign": f"conv-{int(time.time() * 1000)}",
+        "conversation_sign": f"{uuid_}_{int(time.time() * 1000)}",
         "timestamp": int(time.time() * 1000),
         "question": question,
-        "id": 0,
-        "id_list": "",
         "lang": lang,
         "model": model,
         "length": length,
