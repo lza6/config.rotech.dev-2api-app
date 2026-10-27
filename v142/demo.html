@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>OpenChat 1.4.2 协议 Demo（本地 mock）</title>
+<style>
+  body{font-family:system-ui,sans-serif;background:#0f1420;color:#e6e9f0;max-width:860px;margin:0 auto;padding:24px}
+  h1{font-size:20px} .tag{color:#7fd18c;font-size:12px}
+  #log{background:#161c2b;border:1px solid #2a3350;border-radius:8px;padding:12px;height:340px;overflow-y:auto;font-size:13px;white-space:pre-wrap;margin:12px 0}
+  .row{display:flex;gap:8px;margin:8px 0}
+  input,select,button{background:#1d2536;color:#e6e9f0;border:1px solid #2a3350;border-radius:6px;padding:8px}
+  input{flex:1} button{cursor:pointer} button:hover{background:#2a3350}
+  .ok{color:#7fd18c}.err{color:#ff8080}.dim{color:#8a93a8}
+</style>
+</head>
+<body>
+<h1>OpenChat 1.4.2 (dialgptapi) 协议 Demo <span class="tag">loopback mock only</span></h1>
+<div class="row">
+  <select id="service">
+    <option value="gpt">gpt</option>
+    <option value="gemini">gemini</option>
+    <option value="grok">grok</option>
+    <option value="deepseek">deepseek</option>
+  </select>
+  <input id="q" placeholder="输入问题…" value="你好，介绍一下你自己">
+  <button onclick="login()">1. 登录</button>
+  <button onclick="ask()">2. 发送</button>
+</div>
+<div id="log"></div>
+<div class="dim">协议: POST /v1/auth/login {timezone,token,app_name,revenue_cat_app_user_id} → Bearer access_token → POST /v1/ai/services/{svc} SSE</div>
+<script>
+const BASE = location.origin + '/v1';
+let token = '';
+const log = (msg, cls='') => { const el = document.getElementById('log');
+  el.innerHTML += `<span class="${cls}">${new Date().toLocaleTimeString()} ${msg}</span>\n`; el.scrollTop = el.scrollHeight; };
+
+async function login() {
+  // 真实 app 用 Firebase ID token；mock 接受任意非空 token
+  const r = await fetch(BASE + '/auth/login', { method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ timezone: 'GMT+08:00', token: 'demo-firebase-token-' + Date.now(),
+      app_name: 'chat_gpt_android', revenue_cat_app_user_id: '', one_link_params: null }) });
+  const j = await r.json();
+  if (r.ok) { token = j.access_token; log(`✔ login 200  access_token=${j.access_token.slice(0,12)}…  expires_in=${j.access_token_expires_in}s`, 'ok'); }
+  else log(`✘ login ${r.status}`, 'err');
+}
+
+async function ask() {
+  if (!token) return log('先点击登录', 'err');
+  const svc = document.getElementById('service').value;
+  const q = document.getElementById('q').value;
+  const modelMap = { gpt:'gpt-4o-mini', gemini:'gemini-2.5-flash', grok:'grok-3-mini-latest', deepseek:'deepseek-chat' };
+  const messages = [
+    { role: 'system', content: [{ type: 'text', text: 'You are a helpful assistant.' }] },
+    { role: 'user', content: [{ type: 'text', text: q }] },
+  ];
+  const body = svc === 'gemini'
+    ? { contents: [{ role: 'user', parts: [{ text: q }] }], generationConfig: {} }
+    : { model: modelMap[svc], messages, max_completion_tokens: 1000, stream: true };
+  log(`→ POST /ai/services/${svc} model=${body.model || '(gemini)'}`, 'dim');
+  const t0 = performance.now();
+  const r = await fetch(`${BASE}/ai/services/${svc}`, { method: 'POST',
+    headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
+    body: JSON.stringify(body) });
+  if (!r.ok) return log(`✘ HTTP ${r.status}`, 'err');
+  const reader = r.body.getReader(); const dec = new TextDecoder();
+  let buf = '', out = '', first = null;
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buf += dec.decode(value, { stream: true });
+    for (const line of buf.split('\n')) {
+      if (!line.startsWith('data:')) continue;
+      const data = line.slice(5).trim();
+      if (!data || data === '[DONE]') continue;
+      try {
+        const j = JSON.parse(data);
+        let piece = '';
+        if (j.choices) piece = j.choices[0]?.delta?.content || '';
+        else if (j.candidates) piece = j.candidates[0]?.content?.parts?.map(p => p.text).join('') || '';
+        if (piece) { out += piece; if (first === null) { first = performance.now() - t0; log(`⚡ 首 chunk ${first.toFixed(0)}ms`, 'dim'); } }
+      } catch {}
+    }
+    buf = '';
+  }
+  log(`✔ ${svc} (${((performance.now()-t0)/1000).toFixed(2)}s): ${out}`, 'ok');
+}
+</script>
+</body>
+</html>
