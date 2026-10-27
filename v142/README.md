@@ -73,12 +73,17 @@ gemini 服务对 OpenAI 格式报后端 500（`generate_content_stream() got an 
 - ⚠️ `gpt-4.1-nano` 上游实际已 deprecated（OpenAI 404）→ 真正可用：**gpt-5-nano、gpt-4.1-2025-04-14**
 - 非白名单模型（gpt-4o-mini、grok-3、deepseek、gemini-2.5）→ 403 风格报错 `is not free model`
 
-## 服务端风控要点（实测观察）
+## 服务端风控要点（实测确认）
 
-1. **匿名用户按 IP 归并**：不同 Firebase 匿名账号从同一 IP 登录 → 同一 `user_id`，共享免费额度。
-2. **免费额度约 5~8 次请求/IP**，用尽后所有聊天请求 402 `Payment Required`。
-3. `POST /v1/debug/reset-ai-requests` 存在（AdminFragment 调用），普通用户 403 Forbidden。
-4. 解绑方式（推测，未验证）：换出口 IP 重新匿名注册 → 新 user_id 新额度。
+1. **去重键 = `revenue_cat_app_user_id`（= android_id），与 IP 无关**：
+   - App 链路：`App.java` 取 `Settings.Secure.ANDROID_ID` → spIDS.userId → `T/C1835a` 填入 TokenRequest；
+   - 实测：同一直连 IP、两个不同 rc_id → 两个新 user_id（1034757 / 1034758）；
+   - 实测：两个不同出口 IP、rc_id 为空 → 仍归并同一 user_id 876383；
+   - **rc_id 可任意伪造 → 用户数无上限**。
+2. **免费额度精确 = 6 次聊天/user_id**（第 7 次 402 Payment Required），402 时 `ai/fal` 文生图同禁。
+3. Firebase 匿名注册（identitytoolkit）同 IP 连续注册 10+ 次未见频控。
+4. `POST /v1/debug/reset-ai-requests` 存在（AdminFragment），普通用户 403。
+5. ⚠️ 风险提示：服务端后续可能加 IP 频控或 rc_id 校验，生产接入建议保留代理池后备。
 
 ## 其他端点
 
@@ -105,8 +110,10 @@ node v142/mock-server.cjs 8942
 node v142/stress_test.cjs 8942 20 200
 ```
 
-## new-api 渠道接入建议
+## new-api 渠道接入建议（已定案）
 
-- 渠道类型：OpenAI 兼容自定义渠道，Base URL `https://api.dialgptapi.com/v1`（或本地代理补齐认证链）。
-- 渠道密钥不能是静态 API key —— 需要动态维护 Firebase 匿名注册 + login + refresh token 循环（每小时换 access_token）。
-- 免费额度按 IP 计 → 代理池轮换出口 IP 是扩容的唯一路径（与 imagenai.online 的设备轮换同构）。
+- **不需要代理池换 IP**：每用户凭证 = 随机 rc_id（uuid）+ Firebase 匿名注册 + login，直连即可；
+- 凭证循环：signup(~300ms) + login(~300ms) → 缓存复用至 6 次额度耗尽 → 换新 rc_id 重开；
+- 渠道形态：OpenAI 兼容，Base URL `https://api.dialgptapi.com/v1`，鉴权层做在 adaptor 内（动态凭证）；
+- 可用模型：gpt-5-nano、gpt-4.1-2025-04-14（免费白名单实测可用者）；
+- 代理池保留为 402 重试降级路径（防未来 IP 风控）。
