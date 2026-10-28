@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>OpenChat 1.4.1 · 逆向 2API Demo</title>
+<style>
+  :root{
+    --bg:#0d1117; --panel:#161b22; --line:#262d36; --fg:#e6edf3; --dim:#8b949e;
+    --accent:#2ee6a8; --accent2:#22b8ff; --user:#1f6feb;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;height:100vh;display:flex;flex-direction:column;background:var(--bg);color:var(--fg);
+       font:15px/1.6 -apple-system,"Segoe UI","Microsoft YaHei",sans-serif}
+  header{display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--line);background:var(--panel)}
+  header h1{font-size:15px;margin:0;font-weight:600;letter-spacing:.3px}
+  header .badge{font-size:11px;color:#0d1117;background:var(--accent);padding:2px 8px;border-radius:20px;font-weight:700}
+  header .spacer{flex:1}
+  select,button,input{font:inherit;color:var(--fg);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:6px 10px;outline:none}
+  button{cursor:pointer;transition:.15s}
+  button:hover{border-color:var(--accent);color:var(--accent)}
+  main{flex:1;overflow-y:auto;padding:20px 16px;display:flex;flex-direction:column;gap:14px}
+  .msg{max-width:900px;width:100%;margin:0 auto;display:flex;gap:10px}
+  .msg .who{flex:0 0 34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:12px;font-weight:700}
+  .msg.user .who{background:var(--user);color:#fff}
+  .msg.bot .who{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#04110c}
+  .bubble{flex:1;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 14px;white-space:pre-wrap;word-break:break-word}
+  .msg.user .bubble{background:#12233d;border-color:#1f3f6d}
+  .meta{font-size:11px;color:var(--dim);margin-top:6px}
+  footer{border-top:1px solid var(--line);background:var(--panel);padding:12px 16px}
+  .composer{max-width:900px;margin:0 auto;display:flex;gap:10px;align-items:flex-end}
+  textarea{flex:1;resize:none;height:52px;max-height:180px;background:var(--bg);border:1px solid var(--line);
+           border-radius:12px;padding:12px 14px;color:var(--fg);font:inherit;outline:none}
+  textarea:focus{border-color:var(--accent)}
+  .send{height:52px;padding:0 22px;background:linear-gradient(135deg,var(--accent),var(--accent2));
+        border:none;border-radius:12px;color:#04110c;font-weight:700}
+  .hint{max-width:900px;margin:6px auto 0;font-size:11px;color:var(--dim);display:flex;gap:14px}
+  .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-right:5px}
+  .err{color:#ff7b72}
+</style>
+</head>
+<body>
+<header>
+  <h1>OpenChat 1.4.1</h1><span class="badge">REVERSE 2API</span>
+  <span class="spacer"></span>
+  <select id="model">
+    <option value="openchat-auto">auto (GPT-5-nano 池)</option>
+    <option value="openchat-gpt5">gpt5</option>
+    <option value="openchat-gpt4o">gpt4o</option>
+    <option value="openchat-claude45">claude45</option>
+    <option value="openchat-gemini3">gemini3</option>
+    <option value="openchat-grok41">grok41</option>
+  </select>
+  <select id="length" title="回复长度">
+    <option value="auto">长度 auto</option>
+    <option value="short">短</option>
+    <option value="detail">详细</option>
+  </select>
+  <button id="reset">新会话</button>
+</header>
+<main id="log"></main>
+<footer>
+  <div class="composer">
+    <textarea id="input" placeholder="输入消息… Ctrl+Enter 发送"></textarea>
+    <button class="send" id="send">发送</button>
+  </div>
+  <div class="hint">
+    <span><span class="dot"></span>上游 gptapi.rotech.dev/api/v6/chat/common</span>
+    <span id="stat">就绪</span>
+  </div>
+</footer>
+<script>
+const log = document.getElementById('log');
+const input = document.getElementById('input');
+const stat = document.getElementById('stat');
+let session = 'sess-' + Math.random().toString(36).slice(2, 10);
+let history = [];
+
+function add(role, text, meta) {
+  const d = document.createElement('div');
+  d.className = 'msg ' + role;
+  d.innerHTML = `<div class="who">${role === 'user' ? '你' : 'AI'}</div>
+    <div class="bubble">${escapeHtml(text)}${meta ? `<div class="meta">${meta}</div>` : ''}</div>`;
+  log.appendChild(d);
+  log.scrollTop = log.scrollHeight;
+  return d.querySelector('.bubble');
+}
+function escapeHtml(s) {
+  return (s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+async function send() {
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  add('user', text);
+  history.push({ role: 'user', content: text });
+  const bubble = add('bot', '');
+  bubble.innerHTML = '<span style="color:#8b949e">思考中…</span>';
+  stat.textContent = '请求中…';
+  const t0 = performance.now();
+  try {
+    const res = await fetch('/v1/chat/completions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: document.getElementById('model').value,
+        length: document.getElementById('length').value,
+        messages: history,
+        stream: true,
+        session,
+      }),
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status + ' ' + (await res.text()).slice(0, 200));
+    const reader = res.body.getReader();
+    const dec = new TextDecoder();
+    let buf = '', out = '', first = true;
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buf += dec.decode(value, { stream: true });
+      let idx;
+      while ((idx = buf.indexOf('\n\n')) >= 0) {
+        const chunk = buf.slice(0, idx).trim();
+        buf = buf.slice(idx + 2);
+        if (!chunk.startsWith('data:')) continue;
+        const payload = chunk.slice(5).trim();
+        if (payload === '[DONE]') continue;
+        try {
+          const j = JSON.parse(payload);
+          if (j.error) throw new Error(j.error.message);
+          const delta = j.choices?.[0]?.delta?.content || '';
+          if (delta) {
+            if (first) { bubble.innerHTML = ''; first = false; }
+            out += delta;
+            bubble.innerHTML = escapeHtml(out);
+            log.scrollTop = log.scrollHeight;
+          }
+        } catch (e) { if (e.message && !e.message.includes('JSON')) throw e; }
+      }
+    }
+    const ms = Math.round(performance.now() - t0);
+    bubble.innerHTML = escapeHtml(out) + `<div class="meta">${ms} ms · ${document.getElementById('model').value}</div>`;
+    history.push({ role: 'assistant', content: out });
+    stat.textContent = `完成 ${ms} ms`;
+  } catch (e) {
+    bubble.innerHTML = `<span class="err">错误：${escapeHtml(e.message)}</span>`;
+    stat.textContent = '失败';
+  }
+}
+
+document.getElementById('send').onclick = send;
+input.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); send(); }
+});
+document.getElementById('reset').onclick = () => {
+  session = 'sess-' + Math.random().toString(36).slice(2, 10);
+  history = []; log.innerHTML = ''; stat.textContent = '新会话';
+};
+add('bot', '你好，这里是 OpenChat 1.4.1 逆向通道。模型由 rotech.dev 上游提供，支持多轮上下文与 6 种后端代号。');
+</script>
+</body>
+</html>

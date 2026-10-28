@@ -127,6 +127,35 @@ IV      = md5hex[16:32]             # 16 字节 ASCII
 
 完整结论请看 `README.md` 底部"打通路线"。
 
+## 🆕 v1.4.1（v6 API）：种子来自 native 内嵌证书（2026-10-29 补完）
+
+v1.3.4 的结论是「key 来自 PackageManager 运行时签名」。**在 v1.4.1 上这条不成立**：
+
+- 用 mod 版（`CN=TRUMods`）实际签名派生出的 25 种组合**全部失败**（响应恒为同一密文且解不开）
+- 真正的种子硬编码在 `librocore.so` 偏移 `0x1298`：一张 **X.509 证书 DER 的小写 hex（2842 字符）**，
+  同段还留有 `please put your debug key sign string here` 占位串与 `signature is error` 校验提示
+- 用该 hex 做 `md5 → key/iv` 后，**请求与响应双向立刻打通**，且与 APK 签名无关（任意重签 / 任意设备通用）
+
+```
+md5(seed) = 8a678654d587204960f88b97a8896ec5
+KEY = 8a678654d5872049   IV = 60f88b97a8896ec5   (ASCII, AES-128-CBC-PKCS5)
+```
+
+v6 接口与 v5 的其他差异：
+
+| 项 | v5（v1.3.4） | v6（v1.4.1，本仓库 `v141/`） |
+|---|---|---|
+| 端点 | `chat/common_question` 等 | `v6/chat/common`、`v6/chat/role`、`v6/image/generate` … |
+| `gp_token` | 需要（可传空） | **完全不需要** |
+| `conversation_sign` | `{uuid}_{ms}` | `{uuid}#{ms}` |
+| 额外坑 | — | **JSON 必须紧凑**（带空格 → `param error`）；`id` 字段会破坏多轮上下文 |
+| 额度 | — | 同 uuid 连续 **200 次 0 失败** |
+
+完整报告、可运行客户端、OpenAI 网关、Demo 与压测见 **[`v141/`](v141/)**；
+1.4.2（dialgptapi，Firebase JWT 体系）见 [`v142/`](v142/)。
+
+---
+
 ## 文件说明
 
 ```

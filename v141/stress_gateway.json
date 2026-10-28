@@ -1,0 +1,1641 @@
+{
+ "summary": {
+  "target": "http://127.0.0.1:8941",
+  "requests": 200,
+  "workers": 40,
+  "success": 199,
+  "success_rate": 99.5,
+  "elapsed_s": 69.55,
+  "rps": 2.88,
+  "latency_s": {
+   "p50": 2.54,
+   "p90": 5.45,
+   "p95": 6.69,
+   "p99": 22.81,
+   "max": 61.11
+  },
+  "models": {
+   "openchat-auto": 34,
+   "openchat-gpt5": 34,
+   "openchat-gpt4o": 33,
+   "openchat-claude45": 33,
+   "openchat-gemini3": 33,
+   "openchat-grok41": 33
+  },
+  "errors": {
+   "{'error'": 1
+  },
+  "fail_samples": [
+   {
+    "i": 118,
+    "ok": false,
+    "latency": 61.10519218444824,
+    "model": "openchat-gemini3",
+    "content": "",
+    "error": "{'error': {'message': '[decode_error] cannot decrypt response: <html>\\r\\n<head><title>504 Gateway Time-out</title></head>\\r\\n<body>\\r\\n<center><h1>50', 'type': 'upstream_error', 'code': 'upstream_erro"
+   }
+  ]
+ },
+ "records": [
+  {
+   "i": 0,
+   "ok": true,
+   "latency": 0.9754910469055176,
+   "model": "openchat-auto",
+   "content": "PONG0",
+   "error": null
+  },
+  {
+   "i": 1,
+   "ok": true,
+   "latency": 5.030048608779907,
+   "model": "openchat-gpt5",
+   "content": "PONG1",
+   "error": null
+  },
+  {
+   "i": 2,
+   "ok": true,
+   "latency": 4.257636308670044,
+   "model": "openchat-gpt4o",
+   "content": "PONG2",
+   "error": null
+  },
+  {
+   "i": 3,
+   "ok": true,
+   "latency": 4.644411563873291,
+   "model": "openchat-claude45",
+   "content": "PONG3",
+   "error": null
+  },
+  {
+   "i": 4,
+   "ok": true,
+   "latency": 5.735205888748169,
+   "model": "openchat-gemini3",
+   "content": "PONG4",
+   "error": null
+  },
+  {
+   "i": 5,
+   "ok": true,
+   "latency": 6.903702020645142,
+   "model": "openchat-grok41",
+   "content": "PONG5",
+   "error": null
+  },
+  {
+   "i": 6,
+   "ok": true,
+   "latency": 4.502613544464111,
+   "model": "openchat-auto",
+   "content": "PONG6",
+   "error": null
+  },
+  {
+   "i": 7,
+   "ok": true,
+   "latency": 6.125914812088013,
+   "model": "openchat-gpt5",
+   "content": "PONG7",
+   "error": null
+  },
+  {
+   "i": 8,
+   "ok": true,
+   "latency": 4.105169057846069,
+   "model": "openchat-gpt4o",
+   "content": "PONG8",
+   "error": null
+  },
+  {
+   "i": 9,
+   "ok": true,
+   "latency": 4.717066287994385,
+   "model": "openchat-claude45",
+   "content": "PONG9",
+   "error": null
+  },
+  {
+   "i": 10,
+   "ok": true,
+   "latency": 5.38702392578125,
+   "model": "openchat-gemini3",
+   "content": "PONG10",
+   "error": null
+  },
+  {
+   "i": 11,
+   "ok": true,
+   "latency": 6.693626403808594,
+   "model": "openchat-grok41",
+   "content": "PONG11",
+   "error": null
+  },
+  {
+   "i": 12,
+   "ok": true,
+   "latency": 4.918983697891235,
+   "model": "openchat-auto",
+   "content": "PONG12",
+   "error": null
+  },
+  {
+   "i": 13,
+   "ok": true,
+   "latency": 4.638339281082153,
+   "model": "openchat-gpt5",
+   "content": "PONG13",
+   "error": null
+  },
+  {
+   "i": 14,
+   "ok": true,
+   "latency": 3.97147798538208,
+   "model": "openchat-gpt4o",
+   "content": "PONG14",
+   "error": null
+  },
+  {
+   "i": 15,
+   "ok": true,
+   "latency": 4.537503004074097,
+   "model": "openchat-claude45",
+   "content": "PONG15",
+   "error": null
+  },
+  {
+   "i": 16,
+   "ok": true,
+   "latency": 4.836393594741821,
+   "model": "openchat-gemini3",
+   "content": "PONG16",
+   "error": null
+  },
+  {
+   "i": 17,
+   "ok": true,
+   "latency": 6.306687355041504,
+   "model": "openchat-grok41",
+   "content": "PONG17",
+   "error": null
+  },
+  {
+   "i": 18,
+   "ok": true,
+   "latency": 4.928583383560181,
+   "model": "openchat-auto",
+   "content": "PONG18",
+   "error": null
+  },
+  {
+   "i": 19,
+   "ok": true,
+   "latency": 6.0544517040252686,
+   "model": "openchat-gpt5",
+   "content": "PONG19",
+   "error": null
+  },
+  {
+   "i": 20,
+   "ok": true,
+   "latency": 4.8187782764434814,
+   "model": "openchat-gpt4o",
+   "content": "PONG20",
+   "error": null
+  },
+  {
+   "i": 21,
+   "ok": true,
+   "latency": 3.9956142902374268,
+   "model": "openchat-claude45",
+   "content": "PONG21",
+   "error": null
+  },
+  {
+   "i": 22,
+   "ok": true,
+   "latency": 4.648582458496094,
+   "model": "openchat-gemini3",
+   "content": "PONG22",
+   "error": null
+  },
+  {
+   "i": 23,
+   "ok": true,
+   "latency": 5.116070747375488,
+   "model": "openchat-grok41",
+   "content": "PONG23",
+   "error": null
+  },
+  {
+   "i": 24,
+   "ok": true,
+   "latency": 3.6514573097229004,
+   "model": "openchat-auto",
+   "content": "PONG24",
+   "error": null
+  },
+  {
+   "i": 25,
+   "ok": true,
+   "latency": 5.571279287338257,
+   "model": "openchat-gpt5",
+   "content": "PONG25",
+   "error": null
+  },
+  {
+   "i": 26,
+   "ok": true,
+   "latency": 4.430842399597168,
+   "model": "openchat-gpt4o",
+   "content": "PONG26",
+   "error": null
+  },
+  {
+   "i": 27,
+   "ok": true,
+   "latency": 4.519188404083252,
+   "model": "openchat-claude45",
+   "content": "PONG27",
+   "error": null
+  },
+  {
+   "i": 28,
+   "ok": true,
+   "latency": 2.5499210357666016,
+   "model": "openchat-gemini3",
+   "content": "PONG28",
+   "error": null
+  },
+  {
+   "i": 29,
+   "ok": true,
+   "latency": 5.21116042137146,
+   "model": "openchat-grok41",
+   "content": "PONG29",
+   "error": null
+  },
+  {
+   "i": 30,
+   "ok": true,
+   "latency": 4.6043665409088135,
+   "model": "openchat-auto",
+   "content": "PONG30",
+   "error": null
+  },
+  {
+   "i": 31,
+   "ok": true,
+   "latency": 5.587765693664551,
+   "model": "openchat-gpt5",
+   "content": "PONG31",
+   "error": null
+  },
+  {
+   "i": 32,
+   "ok": true,
+   "latency": 4.981050729751587,
+   "model": "openchat-gpt4o",
+   "content": "PONG32",
+   "error": null
+  },
+  {
+   "i": 33,
+   "ok": true,
+   "latency": 5.247267246246338,
+   "model": "openchat-claude45",
+   "content": "PONG33",
+   "error": null
+  },
+  {
+   "i": 34,
+   "ok": true,
+   "latency": 5.7216033935546875,
+   "model": "openchat-gemini3",
+   "content": "PONG34",
+   "error": null
+  },
+  {
+   "i": 35,
+   "ok": true,
+   "latency": 6.356553316116333,
+   "model": "openchat-grok41",
+   "content": "PONG35",
+   "error": null
+  },
+  {
+   "i": 36,
+   "ok": true,
+   "latency": 5.649740695953369,
+   "model": "openchat-auto",
+   "content": "PONG36",
+   "error": null
+  },
+  {
+   "i": 37,
+   "ok": true,
+   "latency": 6.999585390090942,
+   "model": "openchat-gpt5",
+   "content": "PONG37",
+   "error": null
+  },
+  {
+   "i": 38,
+   "ok": true,
+   "latency": 5.345405578613281,
+   "model": "openchat-gpt4o",
+   "content": "PONG38",
+   "error": null
+  },
+  {
+   "i": 39,
+   "ok": true,
+   "latency": 5.445252180099487,
+   "model": "openchat-claude45",
+   "content": "PONG39",
+   "error": null
+  },
+  {
+   "i": 40,
+   "ok": true,
+   "latency": 5.361842632293701,
+   "model": "openchat-gemini3",
+   "content": "PONG40",
+   "error": null
+  },
+  {
+   "i": 41,
+   "ok": true,
+   "latency": 4.675498962402344,
+   "model": "openchat-grok41",
+   "content": "PONG41",
+   "error": null
+  },
+  {
+   "i": 42,
+   "ok": true,
+   "latency": 2.388197183609009,
+   "model": "openchat-auto",
+   "content": "PONG42",
+   "error": null
+  },
+  {
+   "i": 43,
+   "ok": true,
+   "latency": 2.982386350631714,
+   "model": "openchat-gpt5",
+   "content": "PONG43",
+   "error": null
+  },
+  {
+   "i": 44,
+   "ok": true,
+   "latency": 1.854139804840088,
+   "model": "openchat-gpt4o",
+   "content": "PONG44",
+   "error": null
+  },
+  {
+   "i": 45,
+   "ok": true,
+   "latency": 1.6891443729400635,
+   "model": "openchat-claude45",
+   "content": "PONG45",
+   "error": null
+  },
+  {
+   "i": 46,
+   "ok": true,
+   "latency": 2.610548973083496,
+   "model": "openchat-gemini3",
+   "content": "PONG46",
+   "error": null
+  },
+  {
+   "i": 47,
+   "ok": true,
+   "latency": 2.771713972091675,
+   "model": "openchat-grok41",
+   "content": "PONG47",
+   "error": null
+  },
+  {
+   "i": 48,
+   "ok": true,
+   "latency": 1.6819417476654053,
+   "model": "openchat-auto",
+   "content": "PONG48",
+   "error": null
+  },
+  {
+   "i": 49,
+   "ok": true,
+   "latency": 2.652111053466797,
+   "model": "openchat-gpt5",
+   "content": "PONG49",
+   "error": null
+  },
+  {
+   "i": 50,
+   "ok": true,
+   "latency": 1.7625641822814941,
+   "model": "openchat-gpt4o",
+   "content": "PONG50",
+   "error": null
+  },
+  {
+   "i": 51,
+   "ok": true,
+   "latency": 1.511772632598877,
+   "model": "openchat-claude45",
+   "content": "PONG51",
+   "error": null
+  },
+  {
+   "i": 52,
+   "ok": true,
+   "latency": 2.4374196529388428,
+   "model": "openchat-gemini3",
+   "content": "PONG52",
+   "error": null
+  },
+  {
+   "i": 53,
+   "ok": true,
+   "latency": 4.033487558364868,
+   "model": "openchat-grok41",
+   "content": "PONG53",
+   "error": null
+  },
+  {
+   "i": 54,
+   "ok": true,
+   "latency": 1.5424141883850098,
+   "model": "openchat-auto",
+   "content": "PONG54",
+   "error": null
+  },
+  {
+   "i": 55,
+   "ok": true,
+   "latency": 16.55636477470398,
+   "model": "openchat-gpt5",
+   "content": "PONG55",
+   "error": null
+  },
+  {
+   "i": 56,
+   "ok": true,
+   "latency": 1.7054376602172852,
+   "model": "openchat-gpt4o",
+   "content": "PONG56",
+   "error": null
+  },
+  {
+   "i": 57,
+   "ok": true,
+   "latency": 2.096412420272827,
+   "model": "openchat-claude45",
+   "content": "PONG57",
+   "error": null
+  },
+  {
+   "i": 58,
+   "ok": true,
+   "latency": 2.7232606410980225,
+   "model": "openchat-gemini3",
+   "content": "PONG58",
+   "error": null
+  },
+  {
+   "i": 59,
+   "ok": true,
+   "latency": 3.0206542015075684,
+   "model": "openchat-grok41",
+   "content": "PONG59",
+   "error": null
+  },
+  {
+   "i": 60,
+   "ok": true,
+   "latency": 1.5928528308868408,
+   "model": "openchat-auto",
+   "content": "PONG60",
+   "error": null
+  },
+  {
+   "i": 61,
+   "ok": true,
+   "latency": 12.237544298171997,
+   "model": "openchat-gpt5",
+   "content": "PONG61",
+   "error": null
+  },
+  {
+   "i": 62,
+   "ok": true,
+   "latency": 1.6890599727630615,
+   "model": "openchat-gpt4o",
+   "content": "PONG62",
+   "error": null
+  },
+  {
+   "i": 63,
+   "ok": true,
+   "latency": 1.8837087154388428,
+   "model": "openchat-claude45",
+   "content": "PONG63",
+   "error": null
+  },
+  {
+   "i": 64,
+   "ok": true,
+   "latency": 2.2118356227874756,
+   "model": "openchat-gemini3",
+   "content": "PONG64",
+   "error": null
+  },
+  {
+   "i": 65,
+   "ok": true,
+   "latency": 3.189265012741089,
+   "model": "openchat-grok41",
+   "content": "PONG65",
+   "error": null
+  },
+  {
+   "i": 66,
+   "ok": true,
+   "latency": 1.5989775657653809,
+   "model": "openchat-auto",
+   "content": "PONG66",
+   "error": null
+  },
+  {
+   "i": 67,
+   "ok": true,
+   "latency": 2.464604616165161,
+   "model": "openchat-gpt5",
+   "content": "PONG67",
+   "error": null
+  },
+  {
+   "i": 68,
+   "ok": true,
+   "latency": 1.5752975940704346,
+   "model": "openchat-gpt4o",
+   "content": "PONG68",
+   "error": null
+  },
+  {
+   "i": 69,
+   "ok": true,
+   "latency": 1.718855619430542,
+   "model": "openchat-claude45",
+   "content": "PONG69",
+   "error": null
+  },
+  {
+   "i": 70,
+   "ok": true,
+   "latency": 2.0404844284057617,
+   "model": "openchat-gemini3",
+   "content": "PONG70",
+   "error": null
+  },
+  {
+   "i": 71,
+   "ok": true,
+   "latency": 2.9976892471313477,
+   "model": "openchat-grok41",
+   "content": "PONG71",
+   "error": null
+  },
+  {
+   "i": 72,
+   "ok": true,
+   "latency": 1.518726110458374,
+   "model": "openchat-auto",
+   "content": "PONG72",
+   "error": null
+  },
+  {
+   "i": 73,
+   "ok": true,
+   "latency": 2.4764938354492188,
+   "model": "openchat-gpt5",
+   "content": "PONG73",
+   "error": null
+  },
+  {
+   "i": 74,
+   "ok": true,
+   "latency": 1.6723828315734863,
+   "model": "openchat-gpt4o",
+   "content": "PONG74",
+   "error": null
+  },
+  {
+   "i": 75,
+   "ok": true,
+   "latency": 1.6612887382507324,
+   "model": "openchat-claude45",
+   "content": "PONG75",
+   "error": null
+  },
+  {
+   "i": 76,
+   "ok": true,
+   "latency": 3.8852670192718506,
+   "model": "openchat-gemini3",
+   "content": "PONG76",
+   "error": null
+  },
+  {
+   "i": 77,
+   "ok": true,
+   "latency": 4.100114822387695,
+   "model": "openchat-grok41",
+   "content": "PONG77",
+   "error": null
+  },
+  {
+   "i": 78,
+   "ok": true,
+   "latency": 1.6977980136871338,
+   "model": "openchat-auto",
+   "content": "PONG78",
+   "error": null
+  },
+  {
+   "i": 79,
+   "ok": true,
+   "latency": 2.9071478843688965,
+   "model": "openchat-gpt5",
+   "content": "PONG79",
+   "error": null
+  },
+  {
+   "i": 80,
+   "ok": true,
+   "latency": 1.6656250953674316,
+   "model": "openchat-gpt4o",
+   "content": "PONG80",
+   "error": null
+  },
+  {
+   "i": 81,
+   "ok": true,
+   "latency": 1.7983081340789795,
+   "model": "openchat-claude45",
+   "content": "PONG81",
+   "error": null
+  },
+  {
+   "i": 82,
+   "ok": true,
+   "latency": 2.3603901863098145,
+   "model": "openchat-gemini3",
+   "content": "PONG82",
+   "error": null
+  },
+  {
+   "i": 83,
+   "ok": true,
+   "latency": 2.9907047748565674,
+   "model": "openchat-grok41",
+   "content": "PONG83",
+   "error": null
+  },
+  {
+   "i": 84,
+   "ok": true,
+   "latency": 1.8615989685058594,
+   "model": "openchat-auto",
+   "content": "PONG84",
+   "error": null
+  },
+  {
+   "i": 85,
+   "ok": true,
+   "latency": 2.756235122680664,
+   "model": "openchat-gpt5",
+   "content": "PONG85",
+   "error": null
+  },
+  {
+   "i": 86,
+   "ok": true,
+   "latency": 1.5567452907562256,
+   "model": "openchat-gpt4o",
+   "content": "PONG86",
+   "error": null
+  },
+  {
+   "i": 87,
+   "ok": true,
+   "latency": 1.6156649589538574,
+   "model": "openchat-claude45",
+   "content": "PONG87",
+   "error": null
+  },
+  {
+   "i": 88,
+   "ok": true,
+   "latency": 2.4182004928588867,
+   "model": "openchat-gemini3",
+   "content": "PONG88",
+   "error": null
+  },
+  {
+   "i": 89,
+   "ok": true,
+   "latency": 2.667609691619873,
+   "model": "openchat-grok41",
+   "content": "PONG89",
+   "error": null
+  },
+  {
+   "i": 90,
+   "ok": true,
+   "latency": 1.307115077972412,
+   "model": "openchat-auto",
+   "content": "PONG90",
+   "error": null
+  },
+  {
+   "i": 91,
+   "ok": true,
+   "latency": 2.476970911026001,
+   "model": "openchat-gpt5",
+   "content": "PONG91",
+   "error": null
+  },
+  {
+   "i": 92,
+   "ok": true,
+   "latency": 1.4654901027679443,
+   "model": "openchat-gpt4o",
+   "content": "PONG92",
+   "error": null
+  },
+  {
+   "i": 93,
+   "ok": true,
+   "latency": 1.5982637405395508,
+   "model": "openchat-claude45",
+   "content": "PONG93",
+   "error": null
+  },
+  {
+   "i": 94,
+   "ok": true,
+   "latency": 2.6306495666503906,
+   "model": "openchat-gemini3",
+   "content": "PONG94",
+   "error": null
+  },
+  {
+   "i": 95,
+   "ok": true,
+   "latency": 3.3741025924682617,
+   "model": "openchat-grok41",
+   "content": "PONG95",
+   "error": null
+  },
+  {
+   "i": 96,
+   "ok": true,
+   "latency": 1.7641851902008057,
+   "model": "openchat-auto",
+   "content": "PONG96",
+   "error": null
+  },
+  {
+   "i": 97,
+   "ok": true,
+   "latency": 14.98511290550232,
+   "model": "openchat-gpt5",
+   "content": "PONG97",
+   "error": null
+  },
+  {
+   "i": 98,
+   "ok": true,
+   "latency": 1.611107349395752,
+   "model": "openchat-gpt4o",
+   "content": "PONG98",
+   "error": null
+  },
+  {
+   "i": 99,
+   "ok": true,
+   "latency": 1.8835136890411377,
+   "model": "openchat-claude45",
+   "content": "PONG99",
+   "error": null
+  },
+  {
+   "i": 100,
+   "ok": true,
+   "latency": 3.6481075286865234,
+   "model": "openchat-gemini3",
+   "content": "PONG100",
+   "error": null
+  },
+  {
+   "i": 101,
+   "ok": true,
+   "latency": 3.673708200454712,
+   "model": "openchat-grok41",
+   "content": "PONG101",
+   "error": null
+  },
+  {
+   "i": 102,
+   "ok": true,
+   "latency": 1.8077080249786377,
+   "model": "openchat-auto",
+   "content": "PONG102",
+   "error": null
+  },
+  {
+   "i": 103,
+   "ok": true,
+   "latency": 2.5368237495422363,
+   "model": "openchat-gpt5",
+   "content": "PONG103",
+   "error": null
+  },
+  {
+   "i": 104,
+   "ok": true,
+   "latency": 1.6730718612670898,
+   "model": "openchat-gpt4o",
+   "content": "PONG104",
+   "error": null
+  },
+  {
+   "i": 105,
+   "ok": true,
+   "latency": 1.8221609592437744,
+   "model": "openchat-claude45",
+   "content": "PONG105",
+   "error": null
+  },
+  {
+   "i": 106,
+   "ok": true,
+   "latency": 2.4546217918395996,
+   "model": "openchat-gemini3",
+   "content": "PONG106",
+   "error": null
+  },
+  {
+   "i": 107,
+   "ok": true,
+   "latency": 3.381972551345825,
+   "model": "openchat-grok41",
+   "content": "PONG107",
+   "error": null
+  },
+  {
+   "i": 108,
+   "ok": true,
+   "latency": 2.118123769760132,
+   "model": "openchat-auto",
+   "content": "PONG108",
+   "error": null
+  },
+  {
+   "i": 109,
+   "ok": true,
+   "latency": 2.459033250808716,
+   "model": "openchat-gpt5",
+   "content": "PONG109",
+   "error": null
+  },
+  {
+   "i": 110,
+   "ok": true,
+   "latency": 1.6176409721374512,
+   "model": "openchat-gpt4o",
+   "content": "PONG110",
+   "error": null
+  },
+  {
+   "i": 111,
+   "ok": true,
+   "latency": 1.883545160293579,
+   "model": "openchat-claude45",
+   "content": "PONG111",
+   "error": null
+  },
+  {
+   "i": 112,
+   "ok": true,
+   "latency": 3.493382215499878,
+   "model": "openchat-gemini3",
+   "content": "PONG112",
+   "error": null
+  },
+  {
+   "i": 113,
+   "ok": true,
+   "latency": 3.1457552909851074,
+   "model": "openchat-grok41",
+   "content": "PONG113",
+   "error": null
+  },
+  {
+   "i": 114,
+   "ok": true,
+   "latency": 1.90199875831604,
+   "model": "openchat-auto",
+   "content": "PONG114",
+   "error": null
+  },
+  {
+   "i": 115,
+   "ok": true,
+   "latency": 2.910634756088257,
+   "model": "openchat-gpt5",
+   "content": "PONG115",
+   "error": null
+  },
+  {
+   "i": 116,
+   "ok": true,
+   "latency": 1.8055531978607178,
+   "model": "openchat-gpt4o",
+   "content": "PONG116",
+   "error": null
+  },
+  {
+   "i": 117,
+   "ok": true,
+   "latency": 2.216545343399048,
+   "model": "openchat-claude45",
+   "content": "PONG117",
+   "error": null
+  },
+  {
+   "i": 118,
+   "ok": false,
+   "latency": 61.10519218444824,
+   "model": "openchat-gemini3",
+   "content": "",
+   "error": "{'error': {'message': '[decode_error] cannot decrypt response: <html>\\r\\n<head><title>504 Gateway Time-out</title></head>\\r\\n<body>\\r\\n<center><h1>50', 'type': 'upstream_error', 'code': 'upstream_erro"
+  },
+  {
+   "i": 119,
+   "ok": true,
+   "latency": 3.244863986968994,
+   "model": "openchat-grok41",
+   "content": "PONG119",
+   "error": null
+  },
+  {
+   "i": 120,
+   "ok": true,
+   "latency": 1.535672903060913,
+   "model": "openchat-auto",
+   "content": "PONG120",
+   "error": null
+  },
+  {
+   "i": 121,
+   "ok": true,
+   "latency": 2.4216408729553223,
+   "model": "openchat-gpt5",
+   "content": "PONG121",
+   "error": null
+  },
+  {
+   "i": 122,
+   "ok": true,
+   "latency": 1.7548766136169434,
+   "model": "openchat-gpt4o",
+   "content": "PONG122",
+   "error": null
+  },
+  {
+   "i": 123,
+   "ok": true,
+   "latency": 2.1987080574035645,
+   "model": "openchat-claude45",
+   "content": "PONG123",
+   "error": null
+  },
+  {
+   "i": 124,
+   "ok": true,
+   "latency": 2.480863571166992,
+   "model": "openchat-gemini3",
+   "content": "PONG124",
+   "error": null
+  },
+  {
+   "i": 125,
+   "ok": true,
+   "latency": 3.4349915981292725,
+   "model": "openchat-grok41",
+   "content": "PONG125",
+   "error": null
+  },
+  {
+   "i": 126,
+   "ok": true,
+   "latency": 1.6669409275054932,
+   "model": "openchat-auto",
+   "content": "PONG126",
+   "error": null
+  },
+  {
+   "i": 127,
+   "ok": true,
+   "latency": 2.658595561981201,
+   "model": "openchat-gpt5",
+   "content": "PONG127",
+   "error": null
+  },
+  {
+   "i": 128,
+   "ok": true,
+   "latency": 1.6717374324798584,
+   "model": "openchat-gpt4o",
+   "content": "PONG128",
+   "error": null
+  },
+  {
+   "i": 129,
+   "ok": true,
+   "latency": 1.7745683193206787,
+   "model": "openchat-claude45",
+   "content": "PONG129",
+   "error": null
+  },
+  {
+   "i": 130,
+   "ok": true,
+   "latency": 2.630215883255005,
+   "model": "openchat-gemini3",
+   "content": "PONG130",
+   "error": null
+  },
+  {
+   "i": 131,
+   "ok": true,
+   "latency": 3.407395601272583,
+   "model": "openchat-grok41",
+   "content": "PONG131",
+   "error": null
+  },
+  {
+   "i": 132,
+   "ok": true,
+   "latency": 2.169059991836548,
+   "model": "openchat-auto",
+   "content": "PONG132",
+   "error": null
+  },
+  {
+   "i": 133,
+   "ok": true,
+   "latency": 2.6344096660614014,
+   "model": "openchat-gpt5",
+   "content": "PONG133",
+   "error": null
+  },
+  {
+   "i": 134,
+   "ok": true,
+   "latency": 1.5927069187164307,
+   "model": "openchat-gpt4o",
+   "content": "PONG134",
+   "error": null
+  },
+  {
+   "i": 135,
+   "ok": true,
+   "latency": 1.8631913661956787,
+   "model": "openchat-claude45",
+   "content": "PONG135",
+   "error": null
+  },
+  {
+   "i": 136,
+   "ok": true,
+   "latency": 2.8328652381896973,
+   "model": "openchat-gemini3",
+   "content": "PONG136",
+   "error": null
+  },
+  {
+   "i": 137,
+   "ok": true,
+   "latency": 2.8039450645446777,
+   "model": "openchat-grok41",
+   "content": "PONG137",
+   "error": null
+  },
+  {
+   "i": 138,
+   "ok": true,
+   "latency": 1.5083608627319336,
+   "model": "openchat-auto",
+   "content": "PONG138",
+   "error": null
+  },
+  {
+   "i": 139,
+   "ok": true,
+   "latency": 2.9688498973846436,
+   "model": "openchat-gpt5",
+   "content": "PONG139",
+   "error": null
+  },
+  {
+   "i": 140,
+   "ok": true,
+   "latency": 1.7873594760894775,
+   "model": "openchat-gpt4o",
+   "content": "PONG140",
+   "error": null
+  },
+  {
+   "i": 141,
+   "ok": true,
+   "latency": 1.800058364868164,
+   "model": "openchat-claude45",
+   "content": "PONG141",
+   "error": null
+  },
+  {
+   "i": 142,
+   "ok": true,
+   "latency": 2.699122190475464,
+   "model": "openchat-gemini3",
+   "content": "PONG142",
+   "error": null
+  },
+  {
+   "i": 143,
+   "ok": true,
+   "latency": 4.102363586425781,
+   "model": "openchat-grok41",
+   "content": "PONG143",
+   "error": null
+  },
+  {
+   "i": 144,
+   "ok": true,
+   "latency": 1.9312951564788818,
+   "model": "openchat-auto",
+   "content": "PONG144",
+   "error": null
+  },
+  {
+   "i": 145,
+   "ok": true,
+   "latency": 22.811510801315308,
+   "model": "openchat-gpt5",
+   "content": "PONG145",
+   "error": null
+  },
+  {
+   "i": 146,
+   "ok": true,
+   "latency": 1.7588205337524414,
+   "model": "openchat-gpt4o",
+   "content": "PONG146",
+   "error": null
+  },
+  {
+   "i": 147,
+   "ok": true,
+   "latency": 1.7654385566711426,
+   "model": "openchat-claude45",
+   "content": "PONG147",
+   "error": null
+  },
+  {
+   "i": 148,
+   "ok": true,
+   "latency": 2.7770652770996094,
+   "model": "openchat-gemini3",
+   "content": "PONG148",
+   "error": null
+  },
+  {
+   "i": 149,
+   "ok": true,
+   "latency": 3.4175381660461426,
+   "model": "openchat-grok41",
+   "content": "PONG149",
+   "error": null
+  },
+  {
+   "i": 150,
+   "ok": true,
+   "latency": 1.8589119911193848,
+   "model": "openchat-auto",
+   "content": "PONG150",
+   "error": null
+  },
+  {
+   "i": 151,
+   "ok": true,
+   "latency": 2.1784791946411133,
+   "model": "openchat-gpt5",
+   "content": "PONG151",
+   "error": null
+  },
+  {
+   "i": 152,
+   "ok": true,
+   "latency": 1.4039840698242188,
+   "model": "openchat-gpt4o",
+   "content": "PONG152",
+   "error": null
+  },
+  {
+   "i": 153,
+   "ok": true,
+   "latency": 1.5163743495941162,
+   "model": "openchat-claude45",
+   "content": "PONG153",
+   "error": null
+  },
+  {
+   "i": 154,
+   "ok": true,
+   "latency": 2.5734214782714844,
+   "model": "openchat-gemini3",
+   "content": "PONG154",
+   "error": null
+  },
+  {
+   "i": 155,
+   "ok": true,
+   "latency": 3.4157707691192627,
+   "model": "openchat-grok41",
+   "content": "PONG155",
+   "error": null
+  },
+  {
+   "i": 156,
+   "ok": true,
+   "latency": 1.7488701343536377,
+   "model": "openchat-auto",
+   "content": "PONG156",
+   "error": null
+  },
+  {
+   "i": 157,
+   "ok": true,
+   "latency": 12.443255186080933,
+   "model": "openchat-gpt5",
+   "content": "PONG157",
+   "error": null
+  },
+  {
+   "i": 158,
+   "ok": true,
+   "latency": 1.6551401615142822,
+   "model": "openchat-gpt4o",
+   "content": "PONG158",
+   "error": null
+  },
+  {
+   "i": 159,
+   "ok": true,
+   "latency": 1.5335533618927002,
+   "model": "openchat-claude45",
+   "content": "PONG159",
+   "error": null
+  },
+  {
+   "i": 160,
+   "ok": true,
+   "latency": 2.83135986328125,
+   "model": "openchat-gemini3",
+   "content": "PONG160",
+   "error": null
+  },
+  {
+   "i": 161,
+   "ok": true,
+   "latency": 3.7572286128997803,
+   "model": "openchat-grok41",
+   "content": "PONG161",
+   "error": null
+  },
+  {
+   "i": 162,
+   "ok": true,
+   "latency": 1.6022799015045166,
+   "model": "openchat-auto",
+   "content": "PONG162",
+   "error": null
+  },
+  {
+   "i": 163,
+   "ok": true,
+   "latency": 2.7503576278686523,
+   "model": "openchat-gpt5",
+   "content": "PONG163",
+   "error": null
+  },
+  {
+   "i": 164,
+   "ok": true,
+   "latency": 1.7700386047363281,
+   "model": "openchat-gpt4o",
+   "content": "PONG164",
+   "error": null
+  },
+  {
+   "i": 165,
+   "ok": true,
+   "latency": 1.8559303283691406,
+   "model": "openchat-claude45",
+   "content": "PONG165",
+   "error": null
+  },
+  {
+   "i": 166,
+   "ok": true,
+   "latency": 2.314347982406616,
+   "model": "openchat-gemini3",
+   "content": "PONG166",
+   "error": null
+  },
+  {
+   "i": 167,
+   "ok": true,
+   "latency": 2.7137818336486816,
+   "model": "openchat-grok41",
+   "content": "PONG167",
+   "error": null
+  },
+  {
+   "i": 168,
+   "ok": true,
+   "latency": 1.584254264831543,
+   "model": "openchat-auto",
+   "content": "PONG168",
+   "error": null
+  },
+  {
+   "i": 169,
+   "ok": true,
+   "latency": 2.6330368518829346,
+   "model": "openchat-gpt5",
+   "content": "PONG169",
+   "error": null
+  },
+  {
+   "i": 170,
+   "ok": true,
+   "latency": 1.729537010192871,
+   "model": "openchat-gpt4o",
+   "content": "PONG170",
+   "error": null
+  },
+  {
+   "i": 171,
+   "ok": true,
+   "latency": 1.803868293762207,
+   "model": "openchat-claude45",
+   "content": "PONG171",
+   "error": null
+  },
+  {
+   "i": 172,
+   "ok": true,
+   "latency": 2.2589986324310303,
+   "model": "openchat-gemini3",
+   "content": "PONG172",
+   "error": null
+  },
+  {
+   "i": 173,
+   "ok": true,
+   "latency": 2.738199234008789,
+   "model": "openchat-grok41",
+   "content": "PONG173",
+   "error": null
+  },
+  {
+   "i": 174,
+   "ok": true,
+   "latency": 1.6265456676483154,
+   "model": "openchat-auto",
+   "content": "PONG174",
+   "error": null
+  },
+  {
+   "i": 175,
+   "ok": true,
+   "latency": 2.1198697090148926,
+   "model": "openchat-gpt5",
+   "content": "PONG175",
+   "error": null
+  },
+  {
+   "i": 176,
+   "ok": true,
+   "latency": 1.612929105758667,
+   "model": "openchat-gpt4o",
+   "content": "PONG176",
+   "error": null
+  },
+  {
+   "i": 177,
+   "ok": true,
+   "latency": 1.7833828926086426,
+   "model": "openchat-claude45",
+   "content": "PONG177",
+   "error": null
+  },
+  {
+   "i": 178,
+   "ok": true,
+   "latency": 2.376547336578369,
+   "model": "openchat-gemini3",
+   "content": "PONG178",
+   "error": null
+  },
+  {
+   "i": 179,
+   "ok": true,
+   "latency": 2.978391408920288,
+   "model": "openchat-grok41",
+   "content": "PONG179",
+   "error": null
+  },
+  {
+   "i": 180,
+   "ok": true,
+   "latency": 1.7377924919128418,
+   "model": "openchat-auto",
+   "content": "PONG180",
+   "error": null
+  },
+  {
+   "i": 181,
+   "ok": true,
+   "latency": 2.99367356300354,
+   "model": "openchat-gpt5",
+   "content": "PONG181",
+   "error": null
+  },
+  {
+   "i": 182,
+   "ok": true,
+   "latency": 1.7080748081207275,
+   "model": "openchat-gpt4o",
+   "content": "PONG182",
+   "error": null
+  },
+  {
+   "i": 183,
+   "ok": true,
+   "latency": 2.4744138717651367,
+   "model": "openchat-claude45",
+   "content": "PONG183",
+   "error": null
+  },
+  {
+   "i": 184,
+   "ok": true,
+   "latency": 2.3591322898864746,
+   "model": "openchat-gemini3",
+   "content": "PONG184",
+   "error": null
+  },
+  {
+   "i": 185,
+   "ok": true,
+   "latency": 2.660780668258667,
+   "model": "openchat-grok41",
+   "content": "PONG185",
+   "error": null
+  },
+  {
+   "i": 186,
+   "ok": true,
+   "latency": 2.018942356109619,
+   "model": "openchat-auto",
+   "content": "PONG186",
+   "error": null
+  },
+  {
+   "i": 187,
+   "ok": true,
+   "latency": 9.094656705856323,
+   "model": "openchat-gpt5",
+   "content": "PONG187",
+   "error": null
+  },
+  {
+   "i": 188,
+   "ok": true,
+   "latency": 1.7961459159851074,
+   "model": "openchat-gpt4o",
+   "content": "PONG188",
+   "error": null
+  },
+  {
+   "i": 189,
+   "ok": true,
+   "latency": 2.0345706939697266,
+   "model": "openchat-claude45",
+   "content": "PONG189",
+   "error": null
+  },
+  {
+   "i": 190,
+   "ok": true,
+   "latency": 2.5636496543884277,
+   "model": "openchat-gemini3",
+   "content": "PONG190",
+   "error": null
+  },
+  {
+   "i": 191,
+   "ok": true,
+   "latency": 3.673964738845825,
+   "model": "openchat-grok41",
+   "content": "PONG191",
+   "error": null
+  },
+  {
+   "i": 192,
+   "ok": true,
+   "latency": 1.7283341884613037,
+   "model": "openchat-auto",
+   "content": "PONG192",
+   "error": null
+  },
+  {
+   "i": 193,
+   "ok": true,
+   "latency": 3.797142505645752,
+   "model": "openchat-gpt5",
+   "content": "PONG193",
+   "error": null
+  },
+  {
+   "i": 194,
+   "ok": true,
+   "latency": 1.619837999343872,
+   "model": "openchat-gpt4o",
+   "content": "PONG194",
+   "error": null
+  },
+  {
+   "i": 195,
+   "ok": true,
+   "latency": 2.3060367107391357,
+   "model": "openchat-claude45",
+   "content": "PONG195",
+   "error": null
+  },
+  {
+   "i": 196,
+   "ok": true,
+   "latency": 2.1659154891967773,
+   "model": "openchat-gemini3",
+   "content": "PONG196",
+   "error": null
+  },
+  {
+   "i": 197,
+   "ok": true,
+   "latency": 3.660524845123291,
+   "model": "openchat-grok41",
+   "content": "PONG197",
+   "error": null
+  },
+  {
+   "i": 198,
+   "ok": true,
+   "latency": 1.5111823081970215,
+   "model": "openchat-auto",
+   "content": "PONG198",
+   "error": null
+  },
+  {
+   "i": 199,
+   "ok": true,
+   "latency": 2.695580244064331,
+   "model": "openchat-gpt5",
+   "content": "PONG199",
+   "error": null
+  }
+ ]
+}
